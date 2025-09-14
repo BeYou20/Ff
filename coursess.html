@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>قائمة الدورات - مؤسسة كن أنت</title>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+<link rel="stylesheet" href="https://unpkg.com/aos@2.3.1/dist/aos.css"/>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@400;700;800&display=swap" rel="stylesheet">
+
+<style>
+    body, html {
+        margin: 0;
+        padding: 0;
+        font-family: 'Tajawal', sans-serif;
+        background-color: #f7f9fc;
+        color: #333;
+        scroll-behavior: smooth;
+    }
+    .courses-page {
+        padding: 20px;
+    }
+    .container {
+        max-width: 1100px;
+        margin: auto;
+        padding: 20px;
+        text-align: center;
+    }
+    h1 {
+        font-size: 2.5rem;
+        color: #0c4366;
+        margin-bottom: 20px;
+        position: relative;
+    }
+    h1::after {
+        content: '';
+        display: block;
+        width: 80px;
+        height: 4px;
+        background-color: #0c4366;
+        margin: 10px auto 0;
+        border-radius: 2px;
+    }
+    .search-container {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+        margin-bottom: 20px;
+    }
+    .search-container input {
+        width: 300px;
+        padding: 10px 15px;
+        border: 1px solid #ccc;
+        border-radius: 25px;
+        outline: none;
+        transition: border-color 0.3s;
+    }
+    .search-container input:focus {
+        border-color: #0c4366;
+    }
+    .search-container button {
+        padding: 10px 20px;
+        background-color: #0c4366;
+        color: white;
+        border: none;
+        border-radius: 25px;
+        cursor: pointer;
+        transition: background-color 0.3s;
+    }
+    .search-container button:hover {
+        background-color: #082d45;
+    }
+    .home-button {
+        display: inline-block;
+        padding: 10px 20px;
+        margin-bottom: 30px;
+        background-color: #e0f2f7;
+        color: #0c4366;
+        text-decoration: none;
+        border-radius: 25px;
+        font-weight: bold;
+        transition: background-color 0.3s;
+    }
+    .home-button:hover {
+        background-color: #c7e5f0;
+    }
+    h2 {
+        font-size: 2rem;
+        color: #0c4366;
+        margin-top: 40px;
+        margin-bottom: 20px;
+        text-align: right;
+    }
+    .course-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 20px;
+    }
+    .course-button {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        text-align: center;
+        height: 60px;
+        padding: 10px 20px;
+        background-color: #fff;
+        color: #333;
+        text-decoration: none;
+        border-radius: 10px;
+        /* إضافة الإطار الخارجي */
+        border: 2px solid #ddd;
+        box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+        transition: transform 0.3s, box-shadow 0.3s, background-color 0.3s, border-color 0.3s;
+    }
+    .course-button:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 6px 12px rgba(0, 0, 0, 0.15);
+        background-color: #f0f0f0;
+        border-color: #0c4366;
+    }
+    .course-button i {
+        margin-left: 10px;
+        color: #0c4366;
+    }
+    
+    /* تعديل خاص بالأجهزة المتوسطة والكبيرة */
+    @media (min-width: 769px) {
+        .course-grid {
+            grid-template-columns: repeat(3, 1fr);
+        }
+    }
+
+    /* تعديل خاص بالأجهزة الصغيرة */
+    @media (max-width: 768px) {
+        .search-container {
+            flex-direction: column;
+            align-items: stretch;
+        }
+        .search-container input, .search-container button {
+            width: 100%;
+        }
+        .course-grid {
+            grid-template-columns: repeat(2, 1fr);
+        }
+    }
+
+    /* تعديل إضافي للأجهزة الصغيرة جداً (أقل من 480px) */
+    @media (max-width: 480px) {
+        .course-grid {
+            grid-template-columns: 1fr;
+        }
+    }
+</style>
+
+</head>
+<body class="courses-page">
+
+
+<div class="container">
+    <h1 data-aos="fade-down">جميع الدورات التدريبية</h1>
+
+    <div class="search-container" data-aos="fade-up" data-aos-delay="50">
+        <input type="text" id="courseSearch" placeholder="ابحث عن دورة..." aria-label="ابحث عن دورة">
+        <button id="searchButton"><i class="fas fa-magnifying-glass"></i> بحث</button>
+    </div>
+
+    <a href="index.html" class="home-button" data-aos="fade-up" data-aos-delay="100"><i class="fas fa-home"></i> العودة للصفحة الرئيسية</a>
+
+    <h2 data-aos="fade-right"><i class="fas fa-mosque"></i> 1. الدورات القرآنية</h2>
+    <div class="course-grid">
+    	<a href="course.html?id=hifz-quran" class="course-button" data-aos="zoom-in"><i class="fas fa-quran"></i>حفظ القرآن الكريم</a>
+        <a href="course.html?id=tasbit-quran" class="course-button" data-aos="zoom-in"><i class="fas fa-mosque"></i> تثبيت القرآن الكريم</a>
+        <a href="course.html?id=tajweed" class="course-button" data-aos="zoom-in"><i class="fas fa-star-and-crescent"></i> التجويد والقراءات</a>
+        <a href="course.html?id=ijazah" class="course-button" data-aos="zoom-in"><i class="fas fa-certificate"></i> إجازة القرآن</a>
+        <a href="course.html?id=tafsir" class="course-button" data-aos="zoom-in"><i class="fas fa-book-open"></i> التفسير وعلوم القرآن</a>
+        <a href="course.html?id=specific-groups" class="course-button" data-aos="zoom-in"><i class="fas fa-users-crown"></i> دورات لفئات معينة</a>
+        <a href="course.html?id=hadith-sciences" class="course-button" data-aos="zoom-in"><i class="fas fa-book-bookmark"></i> علوم الحديث الشريف </a>
+        <a href="course.html?id=advanced-tajweed" class="course-button" data-aos="zoom-in"><i class="fas fa-feather-pointed"></i> علوم التجويد المتقدم </a>
+        <a href="course.html?id=quick-memorization" class="course-button" data-aos="zoom-in"><i class="fas fa-brain-circuit"></i> الحفظ السريع للقرآن الكريم </a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="100"><i class="fas fa-chalkboard-user"></i> 2. الدبلومات الأكاديمية والتقنية</h2>
+    <div class="course-grid">
+        <a href="course.html?id=diploma-business" class="course-button" data-aos="zoom-in"><i class="fas fa-briefcase"></i> دبلوم إدارة الأعمال</a>
+        <a href="course.html?id=diploma-accounting" class="course-button" data-aos="zoom-in"><i class="fas fa-calculator"></i> دبلوم المحاسبة المالية</a>
+        <a href="course.html?id=diploma-graphic" class="course-button" data-aos="zoom-in"><i class="fas fa-paint-brush"></i> دبلوم الجرافيك ديزاين</a>
+        <a href="course.html?id=diploma-marketing" class="course-button" data-aos="zoom-in"><i class="fas fa-bullhorn"></i> دبلوم التسويق الرقمي</a>
+        <a href="course.html?id=diploma-cybersecurity" class="course-button" data-aos="zoom-in"><i class="fas fa-shield-alt"></i> دبلوم الأمن السيبراني</a>
+        <a href="course.html?id=diploma-development" class="course-button" data-aos="zoom-in"><i class="fas fa-chart-line"></i> دبلوم تطوير الأعمال</a>
+        <a href="course.html?id=diploma-english" class="course-button" data-aos="zoom-in"><i class="fas fa-globe"></i> دبلوم اللغة الإنجليزية</a>
+        <a href="course.html?id=diploma-ai" class="course-button" data-aos="zoom-in"><i class="fas fa-robot"></i> دبلوم الذكاء الاصطناعي  </a>
+        <a href="course.html?id=data-analysis" class="course-button" data-aos="zoom-in"><i class="fas fa-database"></i> دبلوم تحليل البيانات </a>
+        <a href="course.html?id=ai-marketing" class="course-button" data-aos="zoom-in"><i class="fas fa-magic-wand-sparkles"></i> دبلوم التسويق Via AI </a>
+        <a href="course.html?id=diploma-entrepreneurship" class="course-button" data-aos="zoom-in"><i class="fas fa-rocket"></i> دبلوم ريادة الأعمال الرقمية </a>
+        <a href="course.html?id=advanced-cybersecurity" class="course-button" data-aos="zoom-in"><i class="fas fa-user-secret"></i> دبلوم الأمن السيبراني المتقدم </a>
+        <a href="course.html?id=diploma-genius" class="course-button" data-aos="zoom-in"><i class="fas fa-lightbulb"></i> دبلوم صناعة العباقرة </a>
+    </div>
+    
+    <h2 data-aos="fade-right" data-aos-delay="200"><i class="fas fa-users-viewfinder"></i> 3. التنمية البشرية وتطوير الذات</h2>
+    <div class="course-grid">
+        <a href="course.html?id=human-development" class="course-button" data-aos="zoom-in"><i class="fas fa-user-graduate"></i> تنمية بشرية</a>
+        <a href="course.html?id=personality-building" class="course-button" data-aos="zoom-in"><i class="fas fa-person-chalkboard"></i> بناء الشخصية</a>
+        <a href="course.html?id=team-building" class="course-button" data-aos="zoom-in"><i class="fas fa-users-line"></i> بناء الفريق</a>
+        <a href="course.html?id=become-trainer" class="course-button" data-aos="zoom-in"><i class="fas fa-chalkboard-user"></i> كيف تصبح مدربًا</a>
+        <a href="course.html?id=thinking-skills" class="course-button" data-aos="zoom-in"><i class="fas fa-head-side-gears"></i> مهارات التفكير الأساسية</a>
+        <a href="course.html?id=thinking-integration" class="course-button" data-aos="zoom-in"><i class="fas fa-puzzle-piece"></i> دمج مهارات التفكير</a>
+        <a href="course.html?id=talented" class="course-button" data-aos="zoom-in"><i class="fas fa-lightbulb"></i> اكتشاف ورعاية الموهوبين</a>
+        <a href="course.html?id=communication" class="course-button" data-aos="zoom-in"><i class="fas fa-comments"></i> مهارات الاتصال والتواصل</a>
+        <a href="course.html?id=training-methods" class="course-button" data-aos="zoom-in"><i class="fas fa-tools"></i> أساليب التدريب</a>
+        <a href="course.html?id=management-art" class="course-button" data-aos="zoom-in"><i class="fas fa-user-tie"></i> فن الإدارة</a>
+        <a href="course.html?id=emotional-intelligence" class="course-button" data-aos="zoom-in"><i class="fas fa-heart"></i> الذكاء العاطفي وإدارة المشاعر </a>
+        <a href="course.html?id=modern-leadership" class="course-button" data-aos="zoom-in"><i class="fas fa-crown"></i> القيادة والإدارة الحديثة </a>
+        <a href="course.html?id=negotiation" class="course-button" data-aos="zoom-in"><i class="fas fa-handshake-angle"></i> مهارات التفاوض والإقناع </a>
+        <a href="course.html?id=time-management" class="course-button" data-aos="zoom-in"><i class="fas fa-hourglass-start"></i> إدارة الوقت وزيادة الإنتاجية </a>
+        <a href="course.html?id=creative-thinking" class="course-button" data-aos="zoom-in"><i class="fas fa-lightbulb-on"></i> التفكير الإبداعي وحل المشكلات </a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="300"><i class="fas fa-laptop-code"></i> 4. التدريب التقني والبرمجي</h2>
+    <div class="course-grid">
+        <a href="course.html?id=programming-basics" class="course-button" data-aos="zoom-in"><i class="fas fa-code"></i> أساسيات البرمجة</a>
+        <a href="course.html?id=computer-courses" class="course-button" data-aos="zoom-in"><i class="fas fa-laptop-code"></i> دورات الحاسوب</a>
+        <a href="course.html?id=icdl" class="course-button" data-aos="zoom-in"><i class="fas fa-id-card"></i> الرخصة الدولية لقيادة الحاسوب</a>
+        <a href="course.html?id=advanced-python" class="course-button" data-aos="zoom-in"><i class="fab fa-python"></i> البرمجة المتقدمة </a>
+        <a href="course.html?id=mobile-development" class="course-button" data-aos="zoom-in"><i class="fas fa-mobile-alt"></i> تطوير تطبيقات الموبايل </a>
+        <a href="course.html?id=game-development" class="course-button" data-aos="zoom-in"><i class="fas fa-gamepad"></i> تطوير الألعاب </a>
+        <a href="course.html?id=ui-ux" class="course-button" data-aos="zoom-in"><i class="fas fa-drafting-compass"></i> تصميم واجهات (UX/UI) </a>
+        <a href="course.html?id=ethical-hacking" class="course-button" data-aos="zoom-in"><i class="fas fa-user-ninja"></i> الاختراق الأخلاقي </a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="400"><i class="fas fa-paint-brush"></i> 5. الدورات الإبداعية والفنية</h2>
+    <div class="course-grid">
+        <a href="course.html?id=drawing" class="course-button" data-aos="zoom-in"><i class="fas fa-palette"></i> الرسم</a>
+        <a href="course.html?id=photography" class="course-button" data-aos="zoom-in"><i class="fas fa-camera"></i> التصوير</a>
+        <a href="course.html?id=video-editing" class="course-button" data-aos="zoom-in"><i class="fas fa-video"></i> المونتاج</a>
+        <a href="course.html?id=graphics" class="course-button" data-aos="zoom-in"><i class="fas fa-desktop"></i> الجرافيكس</a>
+        <a href="course.html?id=candles" class="course-button" data-aos="zoom-in"><i class="fas fa-candle-holder"></i> صناعة الشموع</a>
+        <a href="course.html?id=incense" class="course-button" data-aos="zoom-in"><i class="fas fa-smog"></i> صناعة البخور</a>
+        <a href="course.html?id=sewing" class="course-button" data-aos="zoom-in"><i class="fas fa-cut"></i> الخياطة والتصميم</a>
+        <a href="course.html?id=resin-making" class="course-button" data-aos="zoom-in"><i class="fas fa-atom"></i> فن صناعة الريزن</a>
+        <a href="course.html?id=digital-content" class="course-button" data-aos="zoom-in"><i class="fas fa-newspaper"></i> صناعة المحتوى الرقمي </a>
+        <a href="course.html?id=ai-design" class="course-button" data-aos="zoom-in"><i class="fas fa-image"></i> التصميم عبر الذكاء الاصطناعي </a>
+        <a href="course.html?id=creative-writing" class="course-button" data-aos="zoom-in"><i class="fas fa-pen-nib"></i> فنون الكتابة الإبداعية الحديثة </a>
+        <a href="course.html?id=advanced-video" class="course-button" data-aos="zoom-in"><i class="fas fa-film"></i> تصوير ومونتاج الفيديو المتقدم </a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="500"><i class="fas fa-briefcase-medical"></i> 6. الدورات المتخصصة القصيرة</h2>
+    <div class="course-grid">
+        <a href="course.html?id=marketing-strategy" class="course-button" data-aos="zoom-in"><i class="fas fa-share-nodes"></i> استراتيجية التسويق</a>
+        <a href="course.html?id=digital-ads" class="course-button" data-aos="zoom-in"><i class="fas fa-ad"></i> تصميم الإعلانات الرقمية</a>
+        <a href="course.html?id=pharmacy" class="course-button" data-aos="zoom-in"><i class="fas fa-pills"></i> الصيدلية الرقمية</a>
+        <a href="course.html?id=customer-service" class="course-button" data-aos="zoom-in"><i class="fas fa-headset"></i> خدمة العملاء وإدارة المبيعات</a>
+        <a href="course.html?id=etiquette" class="course-button" data-aos="zoom-in"><i class="fas fa-handshake"></i> الإتيكيت (الأنثى السعيدة)</a>
+        <a href="course.html?id=first-aid" class="course-button" data-aos="zoom-in"><i class="fas fa-medkit"></i> دورة الإسعافات الأولية</a>
+        <a href="course.html?id=cooking" class="course-button" data-aos="zoom-in"><i class="fas fa-utensils"></i> دورة الطبخ</a>
+        <a href="course.html?id=online-earning" class="course-button" data-aos="zoom-in"><i class="fas fa-dollar-sign"></i> دورة الربح من الإنترنت</a>
+        <a href="course.html?id=leadership" class="course-button" data-aos="zoom-in"><i class="fas fa-users-viewfinder"></i> التدريب القيادي وتطوير الذات</a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="600"><i class="fas fa-book-open-reader"></i> 7. الدورات الخاصة بالتعليم والتدريب</h2>
+    <div class="course-grid">
+        <a href="course.html?id=reading-approach" class="course-button" data-aos="zoom-in"><i class="fas fa-book-open"></i> نهج القراءة</a>
+        <a href="course.html?id=active-learning" class="course-button" data-aos="zoom-in"><i class="fas fa-person-running"></i> التعلم النشط</a>
+        <a href="course.html?id=planning" class="course-button" data-aos="zoom-in"><i class="fas fa-calendar-alt"></i> التخطيط الفصلي واليومي</a>
+        <a href="course.html?id=classroom-assessment" class="course-button" data-aos="zoom-in"><i class="fas fa-marker"></i> التقويم الصفي</a>
+        <a href="course.html?id=specifications" class="course-button" data-aos="zoom-in"><i class="fas fa-list-check"></i> جدول المواصفات</a>
+        <a href="course.html?id=question-building" class="course-button" data-aos="zoom-in"><i class="fas fa-clipboard-question"></i> أسلوب بناء الأسئلة الاختبارية</a>
+        <a href="course.html?id=class-management" class="course-button" data-aos="zoom-in"><i class="fas fa-user-group"></i> إدارة الصف</a>
+        <a href="course.html?id=problem-solving" class="course-button" data-aos="zoom-in"><i class="fas fa-lightbulb-on"></i> حل المشكلات الصفية</a>
+        <a href="course.html?id=supervision" class="course-button" data-aos="zoom-in"><i class="fas fa-glasses"></i> أساليب الإشراف التربوي</a>
+        <a href="course.html?id=math-teaching" class="course-button" data-aos="zoom-in"><i class="fas fa-square-root-alt"></i> مهارات تدريس الرياضيات</a>
+        <a href="course.html?id=math-strategies" class="course-button" data-aos="zoom-in"><i class="fas fa-infinity"></i> استراتيجيات تعلم الرياضيات</a>
+        <a href="course.html?id=primary-teaching" class="course-button" data-aos="zoom-in"><i class="fas fa-child"></i> أساليب تدريس الصفوف الأولية</a>
+        <a href="course.html?id=digital-learning" class="course-button" data-aos="zoom-in"><i class="fas fa-laptop-house"></i> أساليب التعليم الرقمي </a>
+        <a href="course.html?id=curriculum-design" class="course-button" data-aos="zoom-in"><i class="fas fa-pen-ruler"></i> تصميم المناهج </a>
+        <a href="course.html?id=gamification" class="course-button" data-aos="zoom-in"><i class="fas fa-gamepad"></i> التعليم التفاعلي </a>
+        <a href="course.html?id=e-assessment" class="course-button" data-aos="zoom-in"><i class="fas fa-poll-h"></i> التقييم والتقويم الإلكتروني </a>
+        <a href="course.html?id=strengthening" class="course-button" data-aos="zoom-in"><i class="fas fa-book-reader"></i> دورات تقوية</a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="700"><i class="fas fa-handshake-angle"></i> 8. دورات المجتمع المدني والإدارة</h2>
+    <div class="course-grid">
+        <a href="course.html?id=strategic-planning" class="course-button" data-aos="zoom-in"><i class="fas fa-sitemap"></i> التخطيط الاستراتيجي</a>
+        <a href="course.html?id=swot" class="course-button" data-aos="zoom-in"><i class="fas fa-circle-nodes"></i> رباعية سوات في التخطيط</a>
+        <a href="course.html?id=networking" class="course-button" data-aos="zoom-in"><i class="fas fa-link"></i> أساليب التشبيك</a>
+        <a href="course.html?id=civil-society-roles" class="course-button" data-aos="zoom-in"><i class="fas fa-building"></i> أدوار منظمات المجتمع المدني</a>
+        <a href="course.html?id=hendra" class="course-button" data-aos="zoom-in"><i class="fas fa-gears"></i> الهندرة</a>
+        <a href="course.html?id=feasibility-study" class="course-button" data-aos="zoom-in"><i class="fas fa-file-invoice-dollar"></i> دراسة جدوى المشاريع</a>
+        <a href="course.html?id=commercial-correspondence" class="course-button" data-aos="zoom-in"><i class="fas fa-envelope"></i> المراسلات التجارية (ar-E)</a>
+        <a href="course.html?id=social-campaigns" class="course-button" data-aos="zoom-in"><i class="fas fa-megaphone"></i> إدارة الحملات الاجتماعية </a>
+        <a href="course.html?id=community-leadership" class="course-button" data-aos="zoom-in"><i class="fas fa-hand-holding-heart"></i> القيادة المجتمعية </a>
+        <a href="course.html?id=strategic-planning-advanced" class="course-button" data-aos="zoom-in"><i class="fas fa-map-marked-alt"></i> التخطيط الاستراتيجي </a>
+        <a href="course.html?id=anti-corruption" class="course-button" data-aos="zoom-in"><i class="fas fa-scale-balanced"></i> الحوكمة ومكافحة الفساد </a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="800"><i class="fas fa-sack-dollar"></i> 9. الدورات المالية وريادة الأعمال </h2>
+    <div class="course-grid">
+        <a href="course.html?id=pmp" class="course-button" data-aos="zoom-in"><i class="fas fa-tasks"></i> المشاريع الاحترافية (PMP)</a>
+        <a href="course.html?id=advanced-accounting" class="course-button" data-aos="zoom-in"><i class="fas fa-money-check-alt"></i> المحاسبة الإدارية المتقدمة</a>
+        <a href="course.html?id=entrepreneurship-innovation" class="course-button" data-aos="zoom-in"><i class="fas fa-lightbulb"></i> ريادة الأعمال والابتكار</a>
+        <a href="course.html?id=trading" class="course-button" data-aos="zoom-in"><i class="fas fa-chart-line"></i> التداول والاستثمار الرقمي</a>
+        <a href="course.html?id=startup-feasibility" class="course-button" data-aos="zoom-in"><i class="fas fa-chart-pie"></i> دراسة جدوى المشاريع الناشئة</a>
+    </div>
+
+    <h2 data-aos="fade-right" data-aos-delay="900">ملاحظة:</h2>
+    <p style="text-align: center; color: #555;" data-aos="fade-up" data-aos-delay="950">
+        للاطلاع على تفاصيل كل دورة، يرجى الضغط على الزر الخاص بها.
+    </p>
+</div>
+
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<script>
+    const courses = [
+      {
+        id: "hifz-quran",
+        title: "🌟 دورة حفظ القرآن الكريم 🌟",
+        description: "دورة مخصصة لحفظ كتاب الله بطريقة منهجية وميسرة، مع التركيز على التلقين الصحيح والمراجعة المستمرة لضمان الحفظ المتقن.",
+        marquee: "📢 سجّل الآن في دورة حفظ القرآن الكريم، وابدأ رحلتك مع كتاب الله!",
+        objectives: [
+          "التمكن من الحفظ اليومي للآيات.",
+          "تطبيق منهجية المراجعة الفعالة.",
+          "تجويد الآيات المحفوظة.",
+          "ربط الحفظ بالتدبر والفهم."
+        ],
+        axes: [
+          "منهجية الحفظ اليومي.",
+          "أهمية المراجعة الدائمة.",
+          "ربط المتشابهات اللفظية.",
+          "تدريبات عملية على الحفظ.",
+          "آداب حامل القرآن."
+        ],
+        instructors: [
+          { name: "الشيخ محمد سعيد", expertise: "مقرئ مجاز" },
+          { name: "الأستاذة خديجة أحمد", expertise: "معلمة قرآن" }
+        ],
+        testimonials: [
+          { text: "الدورة كانت رائعة، ساعدتني على إنجاز جزء كبير من الحفظ في وقت قياسي.", name: "علي" }
+        ],
+        faq: [
+          { question: "هل الدورة للمبتدئين؟", answer: "نعم، الدورة تناسب جميع المستويات، من المبتدئين إلى المتقدمين." }
+        ],
+        achievements: "حفظ أجزاء من القرآن الكريم.<br>تجويد سليم للحروف.<br>ثقة في الحفظ.<br>شهادة إتمام الدورة."
+      },
+      {
+        id: "tasbit-quran",
+        title: "🌟 دورة تثبيت القرآن الكريم 🌟",
+        description: "دورة متخصصة لمساعدة الحفاظ على مراجعة وتثبيت ما حفظوه من كتاب الله، باستخدام تقنيات فعالة لضمان عدم النسيان وزيادة التمكن.",
+        marquee: "📢 سجّل الآن في دورة تثبيت القرآن الكريم، وحافظ على ما حفظته بإتقان!",
+        objectives: [
+          "التمكن من تقنيات المراجعة الفعالة.",
+          "ربط الآيات المتشابهة لزيادة التثبيت.",
+          "القدرة على استحضار الآيات بسرعة.",
+          "تعزيز الحفظ الحالي وتعميقه."
+        ],
+        axes: [
+          "منهجية المراجعة اليومية والأسبوعية.",
+          "تدريبات عملية على المتشابهات اللفظية.",
+          "استخدام الخرائط الذهنية لتثبيت السور.",
+          "تقنيات التلاوة المتقنة."
+        ],
+        instructors: [
+          { name: "الشيخ محمود السيد", expertise: "مقرئ مجاز وخبير في التثبيت" }
+        ],
+        testimonials: [
+          { text: "الدورة ساعدتني على استعادة ثقتي بحفظي، لم أعد أنسى كما كنت من قبل.", name: "يوسف" }
+        ],
+    faq: [
+          { question: "هل الدورة للحفاظ فقط؟", answer: "نعم، الدورة موجهة خصيصًا لمن أتموا حفظ جزء من القرآن." }
+        ],
+        achievements: "التمكن من المراجعة الدائمة.<br>حفظ راسخ وثابت.<br>القدرة على استحضار الآيات في أي وقت.<br>شهادة معتمدة في تثبيت القرآن."
+      },
+      {
+        id: "tajweed",
+        title: "🌟 دورة التجويد والقراءات 🌟",
+        description: "دورة شاملة لتعليم قواعد التجويد الأساسية والمتقدمة، مع شرح لأحكام النون الساكنة والتنوين، المدود، والمخارج والصفات، بهدف تلاوة القرآن الكريم تلاوة صحيحة ومتقنة.",
+        marquee: "📢 سجّل الآن في دورة التجويد والقراءات، وحسّن تلاوتك للقرآن الكريم!",
+        objectives: [
+          "إتقان مخارج الحروف العربية وصفاتها.",
+          "تطبيق أحكام التجويد الأساسية بشكل صحيح.",
+          "فهم أحكام المدود وأنواعها.",
+          "التمكن من تلاوة القرآن الكريم بتجويد سليم."
+        ],
+        axes: [
+          "أحكام النون الساكنة والتنوين.",
+          "أحكام الميم الساكنة.",
+          "المخارج والصفات.",
+          "المدود وأقسامها.",
+          "الصفات اللازمة والعارضة للحروف."
+        ],
+        instructors: [
+          { name: "الشيخ عبد الرحمن", expertise: "مقرئ مجاز في القراءات العشر" }
+        ],
+        testimonials: [
+          { text: "الدورة كانت مفيدة جدًا، الآن أستطيع قراءة القرآن بشكل أفضل.", name: "فاطمة" },
+          { text: "الشيخ ممتاز في الشرح وتبسيط المعلومة، أنصح بها بشدة.", name: "أحمد" }
+        ],
+        faq: [
+          { question: "هل الدورة للمبتدئين؟", answer: "نعم، الدورة مصممة للمبتدئين وتتدرج إلى المستويات المتقدمة." }
+        ],
+        achievements: "تلاوة القرآن بشكل صحيح.<br>القدرة على تطبيق أحكام التجويد عمليًا.<br>الحصول على شهادة إتمام الدورة."
+      },
+      {
+        id: "diploma-business",
+        title: "🌟 دبلوم إدارة الأعمال 🌟",
+        description: "دبلوم شامل يغطي جميع جوانب إدارة الأعمال الحديثة، من التخطيط الاستراتيجي والتسويق إلى الإدارة المالية والموارد البشرية.",
+        marquee: "📢 دبلوم إدارة الأعمال: خطوتك الأولى نحو عالم الإدارة والقيادة الناجحة.",
+        objectives: [
+          "فهم المبادئ الأساسية للإدارة.",
+          "تطوير مهارات التخطيط الاستراتيجي.",
+          "إتقان أساسيات التسويق الرقمي.",
+          "التعرف على الإدارة المالية والمحاسبة."
+        ],
+        axes: [
+          "مقدمة في الإدارة الحديثة.",
+          "التخطيط والتنظيم.",
+          "القيادة والتحفيز.",
+          "الموارد البشرية والإدارة المالية.",
+          "التسويق والمبيعات."
+        ],
+        instructors: [
+          { name: "الأستاذة نورا خالد", expertise: "مستشارة إدارية" }
+        ],
+        testimonials: [
+          { text: "الدبلوم غير نظرتي تمامًا للإدارة، أصبح لدي خطة واضحة لمشروعي الخاص.", name: "علياء" }
+        ],
+        faq: [
+          { question: "هل الدبلوم مناسب للمبتدئين؟", answer: "نعم، الدبلوم مصمم لجميع المستويات." }
+        ],
+        achievements: "فهم شامل لإدارة الأعمال.<br>شهادة دبلوم معتمدة.<br>بناء خطة عمل متكاملة.<br>القدرة على إدارة فريق عمل بنجاح."
+      },
+      {
+        id: "diploma-graphic",
+        title: "🌟 دبلوم الجرافيك ديزاين 🌟",
+        description: "دبلوم متخصص يمنحك المهارات اللازمة لتصبح مصمم جرافيك محترف. ستتعلم أساسيات التصميم، استخدام برامج Adobe، وإنشاء تصاميم إبداعية للإعلانات والمواقع والتسويق.",
+        marquee: "📢 دبلوم الجرافيك ديزاين: أطلق العنان لإبداعك وابدأ في تصميم عالمك الرقمي.",
+        objectives: [
+          "فهم نظريات الألوان والخطوط.",
+          "إتقان برامج التصميم مثل Photoshop و Illustrator.",
+          "إنشاء هوية بصرية كاملة للعلامات التجارية.",
+          "تصميم إعلانات جذابة للمنصات المختلفة."
+        ],
+        axes: [
+          "أساسيات التصميم الجرافيكي.",
+          "التعامل مع برامج Adobe.",
+          "تصميم الشعارات والهوية البصرية.",
+          "تصميم الإعلانات والمنشورات.",
+          "تطبيقات عملية على مشاريع حقيقية."
+        ],
+        instructors: [
+          { name: "علياء مصطفى", expertise: "مصممة جرافيك بخبرة 10 سنوات" }
+        ],
+        testimonials: [
+          { text: "أفضل دبلوم في التصميم، الآن أعمل على مشاريع حرة وأنا واثق من مهاراتي.", name: "سالم" },
+          { text: "الشروحات مبسطة وعملية، تعلمت الكثير في وقت قصير.", name: "ريم" }
+        ],
+        faq: [
+          { question: "هل أحتاج لخبرة سابقة؟", answer: "لا، الدبلوم مناسب للمبتدئين من الصفر." }
+        ],
+        achievements: "محفظة أعمال احترافية.<br>إتقان برامج التصميم الأساسية.<br>القدرة على العمل كمصمم حر.<br>شهادة دبلوم معتمدة."
+      },
+      {
+        id: "diploma-cybersecurity",
+        title: "🌟 دبلوم الأمن السيبراني 🌟",
+        description: "دبلوم شامل يزودك بالمعرفة والمهارات اللازمة لحماية الأنظمة والشبكات والبيانات من التهديدات السيبرانية. ستتعلم كيفية تحليل المخاطر، واكتشاف الثغرات، وتطبيق أفضل الممارسات الأمنية.",
+        marquee: "📢 دبلوم الأمن السيبراني: كن خط الدفاع الأول في عالم التكنولوجيا.",
+        objectives: [
+          "فهم أساسيات الأمن السيبراني.",
+          "التعرف على أنواع الهجمات الإلكترونية وطرق الدفاع عنها.",
+          "تطبيق تقنيات التشفير وحماية البيانات.",
+          "إجراء تحليل للمخاطر الأمنية في الشبكات."
+        ],
+        axes: [
+          "مقدمة في الأمن السيبراني.",
+          "أمن الشبكات والخوادم.",
+          "القرصنة الأخلاقية.",
+          "حماية البيانات والخصوصية.",
+          "الاستجابة للحوادث الأمنية."
+        ],
+        instructors: [
+          { name: "مهندس أحمد ناصر", expertise: "خبير أمن سيبراني" }
+        ],
+        testimonials: [
+          { text: "الدورة كانت مفصلة وعملية للغاية، تعلمت كيفية تأمين شبكتي المنزلية والبيانات الشخصية.", name: "محمد" }
+        ],
+        faq: [
+          { question: "هل الدبلوم يتطلب خلفية في البرمجة؟", answer: "لا، الدبلوم مصمم ليناسب جميع الخلفيات، لكن يفضل وجود معرفة أساسية بالشبكات." }
+        ],
+        achievements: "فهم عميق للأمن السيبراني.<br>القدرة على تأمين الأنظمة والشبكات.<br>شهادة دبلوم معتمدة."
+      },
+      {
+        id: "digital-content",
+        title: "🌟 دورة صناعة المحتوى الرقمي 🌟",
+        description: "دورة عملية لتعلم كيفية إنشاء محتوى جذاب ومؤثر لمختلف المنصات الرقمية. ستغطي الدورة كتابة النصوص، تصوير الفيديو، تحرير الصور، وكيفية التخطيط الاستراتيجي للمحتوى.",
+        marquee: "📢 دورة صناعة المحتوى الرقمي: حوّل أفكارك إلى محتوى يجذب الجماهير.",
+        objectives: [
+          "تحديد الجمهور المستهدف وتفصيل المحتوى المناسب له.",
+          "كتابة نصوص إبداعية ومؤثرة.",
+          "تصوير وتحرير مقاطع فيديو احترافية.",
+          "بناء استراتيجية محتوى متكاملة."
+        ],
+        axes: [
+          "أنواع المحتوى الرقمي.",
+          "التخطيط والبحث عن الأفكار.",
+          "الكتابة الإبداعية ومبادئها.",
+          "التصوير والمونتاج الاحترافي.",
+          "نشر المحتوى وتحليل الأداء."
+        ],
+        instructors: [
+          { name: "سارة عيسى", expertise: "صانعة محتوى رقمي" }
+        ],
+        testimonials: [
+          { text: "الدورة كانت نقطة تحول بالنسبة لي، أصبحت أكثر ثقة في إنتاج محتوى عالي الجودة.", name: "ليلى" }
+        ],
+        faq: [
+          { question: "هل يمكنني الانضمام إذا كنت لا أمتلك كاميرا احترافية؟", answer: "نعم، يمكنك استخدام كاميرا هاتفك الذكي للتدرب وتطبيق المهارات." }
+        ],
+        achievements: "خطة محتوى شخصية.<br>مهارات في التصوير والمونتاج.<br>القدرة على إنتاج محتوى جذاب.<br>شهادة مشاركة في الدورة."
+      },
+      {
+        id: "negotiation",
+        title: "🌟 دورة مهارات التفاوض والإقناع 🌟",
+        description: "دورة مصممة لتطوير قدراتك في التفاوض والإقناع، سواء في بيئة العمل أو الحياة اليومية. ستتعلم كيف تفهم الطرف الآخر، وتستخدم الاستراتيجيات الصحيحة للوصول إلى اتفاقات تحقق المنفعة للجميع.",
+        marquee: "📢 دورة مهارات التفاوض: تعلم كيف تحصل على ما تريد بذكاء واحترافية.",
+        objectives: [
+          "فهم أسس التفاوض الناجح.",
+          "اكتشاف نقاط القوة والضعف في موقفك التفاوضي.",
+          "التمكن من تقنيات الإقناع الفعالة.",
+          "حل النزاعات والوصول إلى حلول وسط."
+        ],
+        axes: [
+          "مبادئ التفاوض الاستراتيجي.",
+          "فن الاستماع الفعال.",
+          "لغة الجسد في التفاوض.",
+          "تقنيات الإقناع الذهني والعاطفي.",
+          "التفاوض في المواقف الصعبة."
+        ],
+        instructors: [
+          { name: "د. يوسف الشريف", expertise: "مستشار ومدرب في الإدارة والتفاوض" }
+        ],
+        testimonials: [
+          { text: "بعد هذه الدورة، أصبحت أثق بنفسي أكثر في المفاوضات التجارية.", name: "سامي" },
+          { text: "دكتور يوسف رائع، الشرح كان مبسطًا وسهل التطبيق.", name: "نورة" }
+        ],
+        faq: [
+          { question: "هل الدورة موجهة للمبيعات فقط؟", answer: "لا، المهارات التي يتم تعلمها يمكن تطبيقها في جميع جوانب الحياة المهنية والشخصية." }
+        ],
+        achievements: "القدرة على التفاوض بثقة.<br>مهارات إقناع عالية.<br>حل الخلافات بفعالية.<br>شهادة مشاركة في الدورة."
+      }
+    ];
+
+    document.addEventListener("DOMContentLoaded", function() {
+        const searchInput = document.getElementById('courseSearch');
+        const courseButtons = document.querySelectorAll('.course-button');
+
+        const performSearch = () => {
+            const searchTerm = searchInput.value.toLowerCase().trim();
+            courseButtons.forEach(button => {
+                const buttonText = button.textContent.toLowerCase();
+                if (buttonText.includes(searchTerm)) {
+                    button.style.display = '';
+                } else {
+                    button.style.display = 'none';
+                }
+            });
+        };
+
+        searchInput.addEventListener('keyup', performSearch);
+        
+        const searchButton = document.getElementById('searchButton');
+        if (searchButton) {
+            searchButton.addEventListener('click', performSearch);
+        }
+        
+        AOS.init({
+            duration: 1200,
+            easing: "ease-in-out",
+            once: true,
+            mirror: false
+        });
+    });
+</script>
+
+</body>
+</html>
